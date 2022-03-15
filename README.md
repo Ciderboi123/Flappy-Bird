@@ -3,5 +3,5 @@
 ---
 
 ### TODO
-- [ ] Make Menus
+- [X] Make Menus
 - [ ] Add Sounds :)
