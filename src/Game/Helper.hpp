@@ -20,30 +20,6 @@
 #include "SFML/Network.hpp"
 #include "SFML/System.hpp"
 
-#include "nlohmann/json.hpp"
-
-// nlohmann::json getConfig();
-// nlohmann::json getJson(std::string path);
-
-// nlohmann::json getConfig() {
-//   std::ifstream i("content/Config/config.json");
-//   nlohmann::json j;
-//   i >> j;
-
-//   i.close();
-
-//   return j;
-// }
-
-// nlohmann::json getJson(std::string path) {
-//   std::ifstream i(path);
-//   nlohmann::json j;
-//   i >> j;
-
-//   i.close();
-//   return j;
-// }
-
 class Helper {
 public:
   static std::string format(const std::string fmt, ...) {

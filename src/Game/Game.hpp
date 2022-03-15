@@ -1,9 +1,7 @@
 #pragma once
 
 #include "Helper.hpp"
-#include "./Scenes/GameScene.hpp"
-
-using json = nlohmann::json;
+#include "./Scenes/MainMenu.hpp"
 
 class Game {
 private:
@@ -33,7 +31,7 @@ private:
     icon.loadFromFile("content/logo.png");
     this->window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-    this->scenes.push(new GameScene(this->window, &this->scenes));
+    this->scenes.push(new MainMenu(this->window, &this->scenes));
   }
 
   void stop() {
@@ -80,7 +78,7 @@ public:
   void render() {
     window->clear();
 
-    if (!this->scenes.empty()) this->scenes.top()->render();
+    if (!this->scenes.empty()) this->scenes.top()->render(this->window);
 
     window->display();
   }

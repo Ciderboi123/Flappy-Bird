@@ -1,6 +1,5 @@
-#include "SceneBase.hpp"
-#include "../Utilities/Button.hpp"
 #include "../Entity/Entities.hpp"
+#include "../Utilities/Button.hpp"
 
 class GameScene : public Scene {
 private:
