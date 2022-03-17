@@ -11,12 +11,21 @@ class MainMenu : public Scene {
   Button* play_button;
   Button* exit_button;
 
+  sf::SoundBuffer buttonSoundBuffer;
+  sf::Sound buttonSound;
+  bool soundPlayed = false;
+
   bool hoverd_text = false;
 
 public:
   MainMenu(sf::RenderWindow* window, std::stack<Scene*>* scenes) : Scene(window, scenes) {
     this->button_font.loadFromFile("content/Fonts/PixellettersFull.ttf");
     this->Title_font.loadFromFile("content/Fonts/FlappyBirdy.ttf");
+
+    this->buttonSoundBuffer.loadFromFile("content/Audio/click.wav");
+    this->buttonSound.setBuffer(buttonSoundBuffer);
+
+    this->name = "menu";
 
     this->text.setFont(this->Title_font);
     this->text.setString("Flappy Bird");
@@ -66,6 +75,12 @@ public:
 
     this->play_button->update(this->mousePosView);
     this->exit_button->update(this->mousePosView);
+
+    if (this->play_button->isPressed() && !soundPlayed) {
+      this->buttonSound.play();
+      soundPlayed = true;
+    }
+    else soundPlayed = false;
 
     if (this->play_button->isPressed()) {
       this->scenes->push(new GameScene(this->window, this->scenes));

@@ -20,6 +20,8 @@ public:
     player = new Player(this->window);
     pipeHandler = new PipeHandler(this->window);
 
+    this->name = "game";
+
     pipeHandler->generatePipes();
 
     if (!background.loadFromFile("content/Textures/bg.jpeg")) {}

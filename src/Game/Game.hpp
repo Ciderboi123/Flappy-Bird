@@ -11,9 +11,16 @@ private:
 
   std::stack<Scene*> scenes;
 
+  bool playJump = false;
+  sf::SoundBuffer jumpBuffer;
+  sf::Sound jumpSound;
+
   float delta;
 
   void init() {
+
+    jumpBuffer.loadFromFile("content/Audio/jump.wav");
+    jumpSound.setBuffer(jumpBuffer);
 
     // std::cout << getConfig().dump(4) << std::endl;
 
@@ -47,6 +54,14 @@ private:
   void updateEvents() {
     while (this->window->pollEvent(event)) {
       if (event.type == sf::Event::Closed) stop();
+
+      if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Key::Space && !playJump && this->scenes.top()->name == "game") {
+        playJump = true;
+        jumpSound.play();
+      }
+      if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Key::Space && playJump) {
+        playJump = false;
+      }
     }
   }
 

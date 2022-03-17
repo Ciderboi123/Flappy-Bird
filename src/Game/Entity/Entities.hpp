@@ -21,9 +21,17 @@ private:
   float jumpAngleIncrement = 1.f;
   float jumpSpeedValue;
 
+  sf::SoundBuffer deathSoundBuffer;
+  sf::Sound deathSound;
+  bool soundplaying = false;
+
 public:
   Player(sf::RenderWindow* window) : Entity(window) {
     this->speed = 120.f;
+
+    this->deathSoundBuffer.loadFromFile("content/Audio/death.wav");
+    this->deathSound.setBuffer(deathSoundBuffer);
+    this->deathSound.setVolume(60);
 
     if (!this->bird.loadFromFile("content/Textures/bird.png")) {
       std::cout << "Error loading Bird Texture" << std::endl;
@@ -111,6 +119,11 @@ public:
       }
 
       this->move(dt, 0.f, fallSpeedValue);
+
+      if (!soundplaying) {
+        this->deathSound.play();
+        soundplaying = true;
+      }
     }
   }
 

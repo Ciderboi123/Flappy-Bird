@@ -16,6 +16,8 @@ protected:
   sf::Vector2f mousePosView;
 
 public:
+  std::string name;
+
   Scene(sf::RenderWindow* window, std::stack<Scene*>* scenes) {
     this->window = window;
     this->scenes = scenes;
