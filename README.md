@@ -4,4 +4,4 @@
 
 ### TODO
 - [X] Make Menus
-- [ ] Add Sounds :)
+- [X] Add Sounds :)
